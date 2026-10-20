@@ -34,7 +34,7 @@ const Contact = () => {
             <div className="space-y-8">
               {[
                 { icon: 'mail', title: 'Email Me', value: 'yeasminjulie02@gmail.com', color: 'bg-primary/10 text-primary' },
-                { icon: 'call', title: 'Phone', value: '01759880612', color: 'bg-secondary/10 text-secondary' },
+                { icon: 'call', title: 'Phone', value: '+88 017598806112 ', color: 'bg-secondary/10 text-secondary' },
                 { icon: 'location_on', title: 'Location', value: 'Rajshahi, Bangladesh', color: 'bg-tertiary/10 text-tertiary' }
               ].map((item, i) => (
                 <motion.div key={i} variants={itemVariants} className="flex items-start gap-6">

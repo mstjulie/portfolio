@@ -1,47 +1,123 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
-const testimonials = [
+const education = [
   {
-    name: "Jonathan Wright",
-    role: "CEO, TechFlow Solutions",
-    content: "Julie is an exceptional developer who truly understands modern web paradigms. She turned our complex requirements into a seamless, high-performance application.",
-    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHmythQHyiteGYfxqxe419ymnqW_1zNuH5-3eGP2mv5Bcijo6gSjRKHAgyh5VyBjWMl4_RZ8ACZkVKQjBl_4MG2S3Ya7x89n7l53s_lIiVpcfevNm305_4kiDvI1a0DnsSWwjKN8TXS8DtMLMyYaxkYc53ez0-zi9Ys6kjBh1pkkhYeK37Cm1RRSsgTzzwYQMlFj9tjO3GdgTRXbHiWW7gWV6fGAogzVuEBjfu79b6F5naNB9dq96-L8ejg49V9rl5LuyurJNLufPj"
+    title: "Bachelor's Degree",
+    status: "Ongoing",
+    institution: "Rajshahi Homoeopathic Medical College",
+    description:
+      "Currently pursuing my bachelor's degree and continuously developing my technical and professional skills.",
+    icon: "school",
   },
   {
-    name: "Sarah Chen",
-    role: "Product Manager, InnovateIO",
-    content: "Working with Julie was a breeze. Her attention to detail and ability to translate design into pixel-perfect code is unmatched.",
-    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHmythQHyiteGYfxqxe419ymnqW_1zNuH5-3eGP2mv5Bcijo6gSjRKHAgyh5VyBjWMl4_RZ8ACZkVKQjBl_4MG2S3Ya7x89n7l53s_lIiVpcfevNm305_4kiDvI1a0DnsSWwjKN8TXS8DtMLMyYaxkYc53ez0-zi9Ys6kjBh1pkkhYeK37Cm1RRSsgTzzwYQMlFj9tjO3GdgTRXbHiWW7gWV6fGAogzVuEBjfu79b6F5naNB9dq96-L8ejg49V9rl5LuyurJNLufPj"
-  }
+    title: "Higher Secondary Certificate (HSC)",
+    status: "Completed",
+    institution: "Higher Secondary Education",
+    description:
+      "Successfully completed my Higher Secondary Certificate education.",
+    icon: "menu_book",
+  },
 ];
 
 const Testimonials = () => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section className="py-section-padding">
-      <div className="max-w-[1280px] mx-auto px-8">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+    <section
+      id="education"
+      className="py-24 px-6 md:px-10"
+    >
+      <div className="max-w-[1100px] mx-auto">
+
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass max-w-4xl mx-auto p-12 rounded-[40px] text-center space-y-8 relative overflow-hidden"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-        <div>
-          <h1 className='text-4xl font-bold'>Educational Qualification</h1>
-        </div>
-        <div>
-          <h3 className='text-2xl '>HSC complete</h3>
-        </div>
+          <p className="text-blue-400 font-medium mb-3">
+            My Academic Background
+          </p>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
+            Educational Qualification
+          </h2>
+
+          <p className="text-gray-400 max-w-2xl mx-auto mt-5 leading-7">
+            My educational journey and current academic background.
+          </p>
         </motion.div>
+
+        {/* Education Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {education.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+              }}
+              whileHover={{
+                y: -8,
+              }}
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-md transition-all duration-300 hover:border-blue-400/30 hover:bg-white/[0.06] hover:shadow-[0_20px_60px_rgba(59,130,246,0.12)]"
+            >
+              {/* Background Glow */}
+              <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl transition-all duration-500 group-hover:bg-blue-500/20" />
+
+              {/* Icon + Status */}
+              <div className="relative z-10 flex items-center justify-between mb-7">
+
+                {/* Icon */}
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400 transition-all duration-300 group-hover:bg-blue-500 group-hover:text-white">
+                  <span className="material-symbols-outlined text-3xl">
+                    {item.icon}
+                  </span>
+                </div>
+
+                {/* Status */}
+                <span
+                  className={`rounded-full px-4 py-1.5 text-sm font-medium ${
+                    item.status === "Ongoing"
+                      ? "bg-blue-500/10 text-blue-400"
+                      : "bg-green-500/10 text-green-400"
+                  }`}
+                >
+                  {item.status}
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10">
+                <h3 className="text-2xl font-semibold text-white mb-3">
+                  {item.title}
+                </h3>
+
+                <p className="text-blue-400 font-medium mb-4">
+                  {item.institution}
+                </p>
+
+                <p className="text-gray-400 leading-7 text-sm">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Bottom Line */}
+              <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-blue-400 transition-all duration-500 group-hover:w-full" />
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
