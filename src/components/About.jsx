@@ -211,8 +211,8 @@ const About = () => {
 
           {/* Download Resume */}
           <motion.a
-            href="../../assets/Karima-Yeasmin-Resume.pdf"
-            download
+            href="/Karima-Yeasmin-Resume.pdf"
+             download="Karima-Yeasmin-Resume.pdf"
             whileHover={{
               scale: 1.05,
               boxShadow: "0 0 25px rgba(173, 198, 255, 0.3)",
